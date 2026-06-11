@@ -4,6 +4,10 @@ on:
   push:
     branches: [ "main" ]
 
+# Memaksa GitHub Actions menggunakan lingkungan Node.js terbaru sesuai kebijakan 2026
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   # TAHAP 1: Saringan Pengujian Otomatis (CI)
   pengujian-unit:
@@ -15,7 +19,7 @@ jobs:
     - name: Setup Node.js Environment
       uses: actions/setup-node@v4
       with:
-        node-version: 18
+        node-version: 24  # Kita naikkan ke versi 24 agar kompatibel
         cache: 'npm'
 
     - name: Install Dependensi Testing

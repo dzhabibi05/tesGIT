@@ -4,7 +4,7 @@
   "description": "",
   "main": "script.js",
   "scripts": {
-    "test": "htmlhint index.html"
+    "test": "npx htmlhint index.html"
   },
   "repository": {
     "type": "git",
