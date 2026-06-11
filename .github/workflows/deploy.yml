@@ -1,0 +1,50 @@
+name: GitHub CI/CD Web Statis Pipeline
+
+# Alur ini otomatis berjalan setiap kali ada 'push' ke branch 'main'
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  # =============================================================
+  # TAHAP 1: Menjalankan Saringan Pengujian Otomatis (CI)
+  # =============================================================
+  pengujian-unit:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Ambil Kode dari Repositori
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js Environment
+      uses: actions/setup-node@v4
+      with:
+        node-version: 18
+        cache: 'npm'
+
+    - name: Install Dependensi Testing
+      run: npm ci
+
+    - name: Jalankan Unit Test (Saringan Otomatis)
+      run: npm test
+
+  # =============================================================
+  # TAHAP 2: Otomatisasi Rilis / Deployment ke Hosting (CD)
+  # =============================================================
+  otomatisasi-deploy:
+    # Syarat mutlak: Job ini hanya jalan kalau 'pengujian-unit' di atas sukses/lolos
+    needs: pengujian-unit 
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Ambil Kode dari Repositori
+      uses: actions/checkout@v4
+
+    - name: Jalankan Proses Deploy ke Vercel
+      uses: amondnet/vercel-action@v20
+      with:
+        # Mengambil kredensial rahasia yang sudah Anda masukkan di GitHub Secrets
+        vercel-token: ${{ secrets.VERCEL_TOKEN }}
+        vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+        vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+        vercel-args: '--prod'

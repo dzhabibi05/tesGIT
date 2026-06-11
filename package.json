@@ -1,0 +1,25 @@
+{
+  "name": "tesgit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dzhabibi05/tesGIT.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/dzhabibi05/tesGIT/issues"
+  },
+  "homepage": "https://github.com/dzhabibi05/tesGIT#readme",
+  "devDependencies": {
+    "jest": "^30.4.2",
+    "jsdom": "^29.1.1"
+  }
+}
