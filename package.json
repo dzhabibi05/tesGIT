@@ -4,7 +4,7 @@
   "description": "",
   "main": "script.js",
   "scripts": {
-    "test": "jest"
+    "test": "htmlhint index.html"
   },
   "repository": {
     "type": "git",
@@ -19,7 +19,6 @@
   },
   "homepage": "https://github.com/dzhabibi05/tesGIT#readme",
   "devDependencies": {
-    "jest": "^30.4.2",
-    "jsdom": "^29.1.1"
+    "htmlhint": "^1.9.2"
   }
 }
